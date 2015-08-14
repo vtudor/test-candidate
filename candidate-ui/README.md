@@ -40,6 +40,7 @@ Then you can start your own development web server to serve static files from a 
 cd ./app
 live-server
 ```
+You'll see instructions on how you need to proceed further.
 
 ## Contact
 
