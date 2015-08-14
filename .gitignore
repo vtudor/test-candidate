@@ -1,0 +1,13 @@
+*.iml
+*.jar
+*.log
+.class
+.classpath
+.gradle
+.idea
+.project
+.node_modules
+.settings
+build
+node_modules
+bower_components
