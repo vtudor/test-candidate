@@ -30,6 +30,11 @@ dependencies {
 
     compile group: 'org.springframework.boot', name:'spring-boot-starter-web',version:"$springBootStarterVersion"
 
+    compile group: 'org.springframework', name:'spring-jms',version:"4.2.1.RELEASE"
+
+
+    compile "org.apache.activemq:activemq-broker"
+
     testCompile "org.springframework.boot:spring-boot-starter-test:$springBootStarterVersion"
     testCompile "com.jayway.jsonpath:json-path:0.8.1"
 }

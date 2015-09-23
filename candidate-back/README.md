@@ -37,23 +37,33 @@ Don't forget to check global remarks section at the end before starting working 
 * Add CandidateRepository
 * Create a service to use the repository
 * Create a new controller which exposes  `GET /candidate`. This endpoint should return a list of candidates.
+<p style='color:green'>done</p>
+
 
 ### Step 2: Add a new endpoint to modify existing candidate
 * Add a new endpoint : `PUT /candidate/{id} requestBody: {name:'john',enable:true/false}` 
 * Modify candidate in the DB 
+<p style='color:green'>done</p>
+
 
 ### Step 3: Create an endpoint to add a new candidate
 * Add a new endpoint : `POST /candidate requestBody : {name:'john',enable:true/false}`
 * Add candidate in the DB
+<p style='color:green'>done</p>
+
 
 ### Step 4: Create an endpoint to delete candidates by ids
 * Add a new endpoint : `POST /candidate/delete requestBody : {ids : [1,6]}` 
 * Delete candidates from DB
+<p style='color:green'>done</p>
+
+
 ### Step 5 : BONUS
 Imagine an application  `intake-generation-service` which is notified for every new candidate added  via `candidate-service` and generates an intake test exervice for him.
-Explain how would you technically organize communication/event propagation from `candidate-service` to this new module taking into account that `intake-generation` could be deployed on different server.  
+Explain how would you technically organize communication/event propagation from `candidate-service` to this new module taking into account that `intake-generation` could be deployed on different server. 
+<p style='color:blue'>There are several custom solutions, but the best one I see via JMS. We can use either a queue (point-to-point message to only 1 receiver - can be async or sync) or a topic where several consumers can be notified (depends on the business requirements). I would personally choose the pub-sub (topic) approach with filters, since the current architectural trends are towards microservices (meaning potentially more than 1 consumer).</p> 
 If you have time to implement your idea it  would be a big BONUS(!) (just communication part, what `intake-generation` does when receives information on a new candidate is not important!)
-
+<p style='color:blue'>Very little time to spare :( so I made a POC for synchronyous queue (point-2-point 1 receiver)</p>
 ## General Remarks
 Usage of Java 8 features as optionals, streams are more then welcomed.  
 There are a couple of empty classes with TODO's created for you to help starting with exercice but not everything is covered. Feel free to create whatever you need!
@@ -79,7 +89,14 @@ For instance post of a new candidate without name would give:
     ]
 }`  
 Obviously we need a generic way to handle those. You can create as many types of exceptions as you need but beforementionned cases should be handled.
-
+<p style='color:green'>done</p>
 ### DTO's
 * Mapped entities shouldn't be returned from Controller layer, think of using DTO's
 * all data which comes as request body should be validated (check DB schema to have an idea of what you need to check).
+<p style='color:green'>done</p>
+
+<h4 style='color:blue'>Final thoughts</h4>
+<p style='color:blue'>I focused mainly on the requirements stated above.</p>
+<p style='color:blue'>There are some UTs & ITs for the Controller, but they can be improved/added (especially for the Service class)</p>
+<p style='color:blue'>I kept the original structure except for the CandidateService class which I transformed into an interface (as per the standard)</p>
+<p style='color:green'>Really fun exercise! haven't used Boot before. thanks!</p>
